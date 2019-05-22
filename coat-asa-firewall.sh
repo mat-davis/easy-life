@@ -2,7 +2,7 @@
 
 #####################################################################################
 #
-# This script automates COAT for commercial firewalls
+# This script automates review of firewall builds
 #
 #####################################################################################
 
