@@ -1,8 +1,8 @@
 #!/usr/bin/expect
-
+#
 #####################################################################################
 #
-# This script automates review of firewall builds
+# This script automates COAT for commercial firewalls
 #
 #####################################################################################
 
@@ -79,7 +79,8 @@ set aaa_autho [list "aaa authorization command TACACS+ LOCAL"]
 
 set aaa_acco [list "aaa accounting command TACACS+"]
 
-set bastions [list "ssh 217.135.0.67" \
+set bastions [list \
+"ssh 217.135.0.67" \
 "ssh 217.135.2.67" \
 "ssh 217.135.5.67" \
 "ssh 217.135.2.74" \
