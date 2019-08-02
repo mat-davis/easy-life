@@ -2,7 +2,7 @@
 # --------------------
 # This script will parse a Checkpoint fwlog file and display uniq top 10 flows by number of connections
 #
-# Author: Matthew Davis (w132226)
+# Author: mat-davis
 # Date: 11/01/2018
 # --------------------
 #  use zcat to open files

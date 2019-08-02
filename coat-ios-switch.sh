@@ -2,7 +2,7 @@
 
 #####################################################################################
 #
-# This script automates COAT for cisco IOS switches
+# This script automates review of Cisco IOS switches
 #
 #####################################################################################
 
