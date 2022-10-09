@@ -1,0 +1,33 @@
+#####################################################################################
+# Match Private/Internal IP by RFC1918
+# This is about how to use regular expression (Regex) to parse IP addresses that are private/internal according to RFC 1918 documentation.
+#
+# In the documentation, the following IP address ranges are treated as private/internal:
+#
+# 10.0.0.0 - 10.255.255.255     8 bits prefix
+# 172.16.0.0 - 172.31.255.255   12 bits prefix
+# 192.168.0.0 - 192.168.255.255 16 bits prefix
+#
+# The strategy is to match each range with a regex and use "|" to match either one of them. The individual regex are:
+#
+# 10(?>\.\d{1,3}){2}
+# 172\.(?>1[6-9]|2\d|3[0-1])(?>\.\d{1,3}){2}
+# 192\.168(?>\.\d{1,3}){2}
+#
+# >Note: one thing to mention about this is that these three expressions don't match "exactly" the IP address format, mainly because they don't check the range (0 to 255) in the atomic expression (?>\.\d{1,3}). However, as long as your IP address comes from a trusted source (e.g., http header), you won't face this problem.
+#
+# After getting each individual regex, package them with match string start (\A) and end (\z), and separate them with "|". Here is the results:
+#
+# \A(10(?>\.\d{1,3}){3})|(192\.168(?>\.\d{1,3}){2})|(172\.(?>1[6-9]|2\d|3[0-1
+#####################################################################################
+
+#####################################################################################
+# Additional snips
+#
+# Example
+# $ ifconfig | grep 'inet addr' | cut -d ':' -f 2 | awk '{ print $1 }' | \
+#      grep -E '^(192\.168|10\.|172\.1[6789]\.|172\.2[0-9]\.|172\.3[01]\.)'
+#
+# var privateIP = /^(0|10|127|192\.168|172\.1[6789]|172\.2[0-9]|172\.3[01]|169\.254|192\.88\.99)\.[0-9.]+$/;
+# /(^127\.)|(^192\.168\.)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^.]+$/;
+#####################################################################################
